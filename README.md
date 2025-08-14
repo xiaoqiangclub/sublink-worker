@@ -20,6 +20,10 @@
 
 ## ✨ 功能特性
 
+<p align="center">
+  <img src="docs/assets/interface-preview.png" alt="SubLinker Interface" width="800"/>
+</p>
+
 本项目完整保留了原项目的所有核心功能：
 
 -   **多种格式转换**：支持将订阅链接转换为 Xray, SingBox, Clash, Surge 等多种客户端兼容的格式。
