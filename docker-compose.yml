@@ -1,0 +1,10 @@
+services:
+  sublink-worker:
+    build: .
+    container_name: sublink-worker
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules

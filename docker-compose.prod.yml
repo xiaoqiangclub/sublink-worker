@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  sublink-worker:
+    image: xiaoqiangclub/sublink-worker:latest
+    container_name: sublink-worker-prod
+    restart: always
+    ports:
+      - "3000:3000"

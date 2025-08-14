@@ -1,21 +1,20 @@
 {
-  "name": "sublink-plus",
-  "version": "0.0.1",
+  "name": "sublink-local",
+  "version": "1.0.0",
+  "description": "A localized and containerized version of sublink-worker.",
   "private": true,
+  "main": "server.js",
   "scripts": {
-    "deploy": "npm run setup-kv && wrangler deploy",
-    "dev": "wrangler dev",
-    "start": "wrangler dev",
-    "test": "vitest",
-    "setup-kv": "node scripts/setup-kv.js"
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "vitest"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.8.0",
-    "vitest": "^3.0.0 <3.1.0",
-    "wrangler": "^3.60.3"
+    "vitest": "^3.0.0 <3.1.0"
   },
   "dependencies": {
-    "js-yaml": "^4.1.0",
-    "sublink-plus": "file:"
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "js-yaml": "^4.1.0"
   }
 }

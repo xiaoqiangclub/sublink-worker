@@ -1,142 +1,123 @@
-<div align="center">
-  <h1><b>Sublink Worker</b></h1>
-  <h5><i>Best Practice for Serverless Self-Deployed Subscription Conversion Tool</i></h5>
-  
-  <a href="https://trendshift.io/repositories/12291" target="_blank">
-    <img src="https://trendshift.io/api/badge/repositories/12291" alt="7Sageer%2Fsublink-worker | Trendshift" width="250" height="55"/>
-  </a>
-  
-  <!-- <p>
-    <a href="https://sublink-worker.sageer.me">https://sublink-worker.sageer.me</a>
-  </p> -->
-  <br>
+<p align="center">
+  <img src="docs/assets/header.png" alt="Sublink Worker Header" width="800"/>
+</p>
 
-  <p>
-    <a href="https://dash.cloudflare.com/?to=/:account/workers-and-pages/create">
-      <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare Workers"/>
-    </a>
-  </p>
-  
-  <p><a href="/docs/README_CN.md">中文文档</a></p>
-</div>
+<p align="center">
+  <a href="https://github.com/xiaoqiangclub/sublink-worker/stargazers"><img src="https://img.shields.io/github/stars/xiaoqiangclub/sublink-worker?style=for-the-badge&color=yellow" alt="Stars"></a>
+  <a href="https://github.com/xiaoqiangclub/sublink-worker/issues"><img src="https://img.shields.io/github/issues/xiaoqiangclub/sublink-worker?style=for-the-badge&color=red" alt="Issues"></a>
+  <a href="https://github.com/xiaoqiangclub/sublink-worker/blob/main/LICENSE"><img src="https://img.shields.io/github/license/xiaoqiangclub/sublink-worker?style=for-the-badge&color=green" alt="License"></a>
+  <img src="https://img.shields.io/badge/Node.js-20.x-blue?style=for-the-badge&logo=node.js" alt="Node.js Version">
+  <img src="https://img.shields.io/badge/Docker-Powered-blue?style=for-the-badge&logo=docker" alt="Docker Powered">
+</p>
 
-## 🚀 Quick Start
+# Sublink Worker (本地化 & Docker化版本)
 
-### Quick Deployment
-- Fork this project, click the `Deploy to Cloudflare` button above
-- Select your repository in the `Import Repository` section (you need to link your GitHub account)
-- Change the `Deploy Command` as follows, then select `Save and Deploy`
-``` bash
-npm run deploy
+本项目基于 [7Sageer/sublink-worker](https://github.com/7Sageer/sublink-worker) 项目进行了深度修改和重构。
+
+本次修改的主要目的是为了提供**本地化部署**和 **Docker/Docker Compose** 支持，方便那些希望在自己的服务器或本地环境中运行此服务的用户。
+
+---
+
+## ✨ 功能特性
+
+本项目完整保留了原项目的所有核心功能：
+
+-   **多种格式转换**：支持将订阅链接转换为 Xray, SingBox, Clash, Surge 等多种客户端兼容的格式。
+-   **灵活的规则集**：内置多种预设规则集（最小化、均衡、全面），并支持高度自定义的路由规则。
+-   **前端操作界面**：提供一个直观的前端页面，方便用户输入链接、选择规则并生成转换后的订阅。
+-   **短链接服务**：支持将长订阅链接缩短，方便分享和使用。
+
+## 🚀 快速开始
+
+您可以通过以下几种方式在本地环境中启动本项目。
+
+### 1. 使用 Docker Compose (生产推荐)
+
+这是最简单、最推荐的部署方式，它将直接从 Docker Hub 拉取预构建好的镜像来运行。
+
+**环境要求:**
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
+**步骤:**
+
+1.  下载本仓库中的 `docker-compose.prod.yml` 文件。
+2.  在该文件所在目录，执行以下命令：
+
+    ```bash
+    docker-compose -f docker-compose.prod.yml up -d
+    ```
+
+服务将在后台启动。您可以通过浏览器访问 `http://localhost:3000` 来使用。
+
+要停止服务，请执行：
+```bash
+docker-compose -f docker-compose.prod.yml down
 ```
 
-## ✨ Features
+### 2. 本地直接运行 (开发推荐)
 
-### Supported Protocols
-- ShadowSocks
-- VMess
-- VLESS
-- Hysteria2
-- Trojan
-- TUIC
+**环境要求:**
+- [Node.js](https://nodejs.org/) (推荐 v20.x 或更高版本)
+- [pnpm](https://pnpm.io/)
 
-### Core Features
-- Support for importing Base64 http/https subscription links and various protocol sharing URLs
-- Pure JavaScript + Cloudflare Worker implementation, one-click deployment, ready to use
-- Support for fixed/random short link generation (based on KV)
-- Light/Dark theme toggle
-- Flexible API, supporting script operations
-- Support for Chinese, English, and Persian languages
+**步骤:**
 
-### Client Support
-- Sing-Box
-- Clash
-- Xray/V2Ray
+1.  **克隆仓库**
+    ```bash
+    git clone https://github.com/xiaoqiangclub/sublink-worker.git
+    cd sublink-worker
+    ```
 
-### Web Interface Features
-- User-friendly operation interface
-- Various predefined rule sets
-- Customizable policy groups for geo-site, geo-ip, ip-cidr, and domain-suffix
+2.  **安装依赖**
+    ```bash
+    pnpm install
+    ```
 
-## 📖 API Documentation
+3.  **启动服务**
+    -   **开发模式** (文件修改后会自动重启):
+        ```bash
+        pnpm dev
+        ```
+    -   **生产模式**:
+        ```bash
+        pnpm start
+        ```
 
-For detailed API documentation, please refer to [APIDoc.md](/docs/APIDoc.md)
+服务启动后，您可以通过浏览器访问 `http://localhost:3000`。
 
-### Main Endpoints
-- `/singbox` - Generate Sing-Box configuration
-- `/clash` - Generate Clash configuration
-- `/xray` - Generate Xray configuration
-- `/shorten` - Generate short links
+### 3. 使用 Docker (手动构建)
 
-## 📝 Recent Updates
+如果您希望自行构建镜像。
 
-### 2025-05-02
+**环境要求:**
+- [Docker](https://www.docker.com/)
 
-- Automatic renaming is now applied when proxies with the same name exist ([#175](https://github.com/7Sageer/sublink-worker/pull/175))
-- Fixed DNS configuration for Singbox ([#174](https://github.com/7Sageer/sublink-worker/pull/174))
+**步骤:**
 
-## 🔧 Project Structure
+1.  **构建 Docker 镜像**
+    ```bash
+    docker build -t xiaoqiangclub/sublink-worker .
+    ```
 
-```
-.
-├── index.js                 # Main server logic, handles request routing
-├── BaseConfigBuilder.js     # Build base configuration
-├── SingboxConfigBuilder.js  # Build Sing-Box configuration
-├── ClashConfigBuilder.js    # Build Clash configuration
-├── ProxyParsers.js          # Parse URLs of various proxy protocols
-├── utils.js                 # Provide various utility functions
-├── htmlBuilder.js           # Generate Web interface
-├── style.js                 # Generate CSS for Web interface
-├── config.js                # Store configuration information
-└── docs/
-    ├── APIDoc.md            # API documentation
-    ├── UpdateLogs.md        # Update logs
-    ├── FAQ.md               # Frequently asked questions
-    └── BaseConfig.md        # Basic configuration feature introduction
-```
+2.  **运行 Docker 容器**
+    ```bash
+    docker run -d -p 3000:3000 --name sublink-worker --restart always xiaoqiangclub/sublink-worker
+    ```
 
-## 🤝 Contribution
+## 📝 使用说明
 
-Issues and Pull Requests are welcome to improve this project.
+-   **访问地址**：无论使用哪种方式部署，服务的默认访问地址都是 `http://localhost:3000`。
+-   **账号和密码**：本项目是一个开放的工具服务，**没有任何内置的账号或密码验证机制**。请确保您的服务运行在安全可信的网络环境中，或自行添加身份验证层。
 
-## 📄 License
+## 鸣谢
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+-   特别感谢原项目 [7Sageer/sublink-worker](https://github.com/7Sageer/sublink-worker) 的作者 **7Sageer**，没有他的出色工作，就没有这个本地化版本。
 
-## ⚠️ Disclaimer
+## ☕ 打赏
 
-This project is for learning and exchange purposes only. Please do not use it for illegal purposes. All consequences resulting from the use of this project are solely the responsibility of the user and are not related to the developer.
+如果这个项目对您有帮助，欢迎通过以下方式请我喝杯咖啡！
 
-## 💰 Sponsorship
-
-<div align="center">
-  <h3>Thanks to the following sponsors for their support of this project</h3>
-<table border="0">
-  <tr>
-    <td>
-      <a href="https://yxvm.com/" target="_blank" title="YXVM">
-        <img src="https://image.779477.xyz/yxvm.png" alt="YXVM" height="60" hspace="20"/>
-      </a>
-    </td>
-    <td>
-      <a href="https://github.com/NodeSeekDev/NodeSupport" target="_blank" title="NodeSupport">
-        <img src="https://image.779477.xyz/ns.png" alt="NodeSupport" height="60" hspace="20"/>
-      </a>
-    </td>
-  </tr>
-</table>
-  <p><b>NodeSupport has sponsored this project, thank you for your support!</b></p>
-  <p>If you would like to sponsor this project, please contact the developer <a href="https://github.com/7Sageer" style="text-decoration: none;">@7Sageer</a></p>
-</div>
-
-## ⭐ Star History
-
-Thanks to everyone who has starred this project! 🌟
-
-<a href="https://star-history.com/#7Sageer/sublink-worker&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=7Sageer/sublink-worker&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=7Sageer/sublink-worker&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=7Sageer/sublink-worker&type=Date" />
- </picture>
-</a>
+<p align="center">
+  <img src="docs/assets/reward.png" alt="打赏码" width="400"/>
+</p>
